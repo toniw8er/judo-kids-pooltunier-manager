@@ -1,0 +1,38 @@
+[project]
+name = "stadtmeisterschaft"
+version = "0.1.0"
+description = "Lokale Windows-App für Judo-Poolplanung, Ergebnisse und A4-Ausgabe"
+requires-python = ">=3.14,<3.15"
+dependencies = [
+    "pyside6-essentials>=6.12,<6.13",
+    "openpyxl>=3.1.5,<3.2",
+    "odfpy==1.4.1",
+    "ortools==9.15.6755",
+]
+
+[dependency-groups]
+build = ["pyinstaller>=6.22.3,<7"]
+dev = [
+    "ruff>=0.17.5",
+]
+
+[project.scripts]
+stadtmeisterschaft = "stadtmeisterschaft.cli:main"
+
+[build-system]
+requires = ["setuptools==84.2.1"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.uv]
+default-groups = []
+
+[tool.ruff]
+target-version = "py314"
+include = ["src/**/*.py", "devtools/**/*.py", "tests/**/*.py", "scripts/**/*.py"]
+extend-exclude = [".tools", ".uv-cache", "tmp", "local-data", ".dev-data"]
+
+[tool.ruff.lint]
+select = ["E9", "F"]
