@@ -246,7 +246,7 @@ class Window(QMainWindow):
         self.context_timer = QTimer(self)
         self.context_timer.setSingleShot(True)
         self.context_timer.setTimerType(Qt.TimerType.PreciseTimer)
-        self.context_timer.setInterval(4000)
+        self.context_timer.setInterval(2000)
         self.context_timer.timeout.connect(self.show_hover_context)
         self.set_context(self.context_hint)
         tools.addWidget(self.context_info, 1)

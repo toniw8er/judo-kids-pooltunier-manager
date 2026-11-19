@@ -344,7 +344,7 @@ zeitversetzt an; `PoolCard` berücksichtigt zusätzlich die Höhe umgebrochener
 Labels. Dadurch bleiben nach Fensterwechseln alle Zeilen innerhalb der Karten.
 Das feste Kontextfeld im Kopf verwendet die vorhandenen Hilfetexte. Ein auf das
 Hauptfenster begrenzter Ereignisfilter leitet Mausbewegungen und Tooltip-Ereignisse
-dorthin, nachdem die Maus vier Sekunden über demselben Element geblieben ist.
+dorthin, nachdem die Maus zwei Sekunden über demselben Element geblieben ist.
 Elementwechsel startet die Wartezeit neu; Verlassen bricht sie ab. Eine bewusste
 Auswahl zeigt den Kontext sofort und unterstützt auch die Tastaturbedienung. Dialoge behalten ihre
 eigenen Hilfen. Das Feld bleibt gleich hoch, lange Inhalte sind scrollbar.

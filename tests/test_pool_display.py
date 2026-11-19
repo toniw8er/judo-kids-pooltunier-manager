@@ -278,14 +278,14 @@ class PlanningOverviewTests(unittest.TestCase):
                            Qt.MouseButton.NoButton, Qt.MouseButton.NoButton, Qt.KeyboardModifier.NoModifier)
         self.app.sendEvent(items.viewport(), move)
         self.app.processEvents()
-        self.assertEqual(self.window.context_timer.interval(), 4000)
+        self.assertEqual(self.window.context_timer.interval(), 2000)
         QTest.qWait(200)
         self.assertEqual(self.window.context_info.toPlainText(), self.window.context_hint)
         # Weitere Bewegung im selben Element darf den Timer nicht neu starten.
         remaining = self.window.context_timer.remainingTime()
         self.app.sendEvent(items.viewport(), move)
         self.assertLessEqual(self.window.context_timer.remainingTime(), remaining)
-        QTest.qWait(3900)
+        QTest.qWait(1900)
         context = self.window.context_info.toPlainText()
         self.assertIn("Anna Jung", context)
         self.assertIn("Jg. 2019", context)
@@ -303,7 +303,7 @@ class PlanningOverviewTests(unittest.TestCase):
         self.app.sendEvent(items.viewport(), move)
         self.app.processEvents()
         self.assertEqual(self.window.context_info.toPlainText(), context)
-        QTest.qWait(4100)
+        QTest.qWait(2100)
         self.assertIn("Eva Klärfall", self.window.context_info.toPlainText())
         self.assertIn("Keine passende Altersklasse", self.window.context_info.toPlainText())
         self.assertEqual(self.window.context_info.height(), height)
@@ -322,7 +322,7 @@ class PlanningOverviewTests(unittest.TestCase):
         header = self.window.headers["Pool 02"]
         self.app.sendEvent(header, QHelpEvent(QEvent.Type.ToolTip, point, header.mapToGlobal(point)))
         self.assertIs(self.window.context_target[0], header)
-        self.assertGreater(self.window.context_timer.remainingTime(), 3950)
+        self.assertGreater(self.window.context_timer.remainingTime(), 1950)
         self.app.sendEvent(label, help_event)
         self.app.sendEvent(label, QEvent(QEvent.Type.Leave))
         self.assertFalse(self.window.context_timer.isActive())
@@ -345,7 +345,7 @@ class PlanningOverviewTests(unittest.TestCase):
         help_event = QHelpEvent(QEvent.Type.ToolTip, point, label.mapToGlobal(point))
         self.assertTrue(self.app.sendEvent(label, help_event))
         self.assertIn("Anna Jung", self.window.context_info.toPlainText())
-        QTest.qWait(4100)
+        QTest.qWait(2100)
         self.assertIn(str(self.folder).casefold(), self.window.context_info.toPlainText().casefold())
 
     def test_age_details_prefer_actual_class_mark_fallback_and_use_event_year(self):
